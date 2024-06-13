@@ -74,12 +74,15 @@ Kullanıcı Şekil 2.1.4. de altı çizili olarak görünen ödevlere tıkladı�
 Şekil 2.1.5. Ödev Yükleme Sayfası Örneği. 
 Kullanıcıların yetkileri Çizelge 2.1.6. da gösterilen “roles” tablosuna göre yapılandırıldığı için kullanıcıların gerekli rollere sahip olmadan belirli işlemleri yapamazlar. 
 Çizelge 2.1.6. Kullanıcı Yetki Gruplarının Tutulduğu Veri Tabanı Tablosu. 
-Sütun Adı	 Sütun Tipi 	Açıklama 
-role_id 	int 	Açıklama: Rolü benzersiz olarak tanımlayan kimlik numarasını saklar. 
-Özellik: Birincil anahtar (PK) olarak kullanılır. 
- 
-role_name	 varchar(45)	 	Açıklama: Rolün adını saklar (örneğin, "Admin", "Öğrenci", "Eğitmen" gibi). 
-Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
+| Sütun Adı  | Sütun Tipi | Açıklama                                           |
+|------------|------------|----------------------------------------------------|
+| role_id    | int        | Rolü benzersiz olarak tanımlayan kimlik numarası. |
+|            |            | Özellik: Birincil anahtar (PK) olarak kullanılır.|
+| role_name  | varchar(45)| Rolün adını saklar (örneğin, "Admin", "Öğrenci", |
+|            |            | "Eğitmen" gibi).                                 |
+|            |            | Özellik: Maksimum 45 karakter uzunluğunda metin |
+|            |            | verisi kabul eder.                               |
+
  
 Kullanıcı ROLE_USER yetkisine sahipse ödev yükleyebilir ve kendi yüklediği ödevleri görüntüleyebilir. ROLE_TEACHER yetkisine sahipse ödev oluşturabilir ve teslim edilen ödevleri görüntüleyebilir. ROLE_ADMIN yetkisine sahipse yeni kullanıcılar kayıt edebilir. 
 2.2.	ÖĞRENCİ ÖZELLİKLERİ 
