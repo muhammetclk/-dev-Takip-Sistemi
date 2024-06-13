@@ -9,11 +9,13 @@ Ayrıca, günlük hayatta ebeveynler için de büyük kolaylık sağlar. Ödev t
 Biz de bu amaçla, Spring Framework kullanarak kendi ödev takip sistemi projemizi geliştirdik.
 Bu projemiz, öğrenci ve öğretmen ihtiyaçlarını göz önünde bulundurarak tasarlanmıştır ve kullanıcı dostu bir arayüz sunar.
 
-
+![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img.png)
 ## 2.	MATERYAL VE YÖNTEM  
 Bu bölümde projenin temellerini içeren bileşenlerden bahsedilmektedir. Projenin dosya yapısı Şekil 2.0.1. de gösterildiği gibidir. 
+
   
 Şekil 2.0.1. Dizin Yapısı. 
+
 Configuration dizini projenin yapılandırma ayarlarını yönetmektedir. Bu pakette genellikle uygulamanın genel yapılandırmalarını gerçekleştiren sınıflar bulunur. Örneğin, güvenlik ayarları, dış servis bağlantı ayarları, role kısıtlamaları gibi konfigürasyonlar burada yer alır. Bu dizinde, SecurityConfig.java ve AppConfig.java gibi dosyalar bulunmaktadır. 
 Controller dizini projenin HTTP isteklerini karşılar ve uygun servislere yönlendirir. Bu pakette, kullanıcılardan gelen HTTP isteklerini alan ve işleyen sınıflar (genellikle Spring'de @RestController veya @Controller anotasyonları ile işaretlenmiş) bulunur. 
 İstekleri alır, ilgili iş mantığı sınıflarına (service) yönlendirir ve sonuçları geri döner. Bu dizinde, AssignmentController.java ve UserController.java gibi dosyalar bulunmaktadır. 
