@@ -9,10 +9,11 @@ Ayrıca, günlük hayatta ebeveynler için de büyük kolaylık sağlar. Ödev t
 Biz de bu amaçla, Spring Framework kullanarak kendi ödev takip sistemi projemizi geliştirdik.
 Bu projemiz, öğrenci ve öğretmen ihtiyaçlarını göz önünde bulundurarak tasarlanmıştır ve kullanıcı dostu bir arayüz sunar.
 
-![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img.png)
+
 ## 2.	MATERYAL VE YÖNTEM  
 Bu bölümde projenin temellerini içeren bileşenlerden bahsedilmektedir. Projenin dosya yapısı Şekil 2.0.1. de gösterildiği gibidir. 
 
+  ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img.png)
   
 Şekil 2.0.1. Dizin Yapısı. 
 
@@ -28,7 +29,9 @@ Validation dizini projenin veri doğrulama işlemlerini gerçekleştirir. Bu pak
 Entity dizini projenin veri tabanı varlıklarını temsil eder. Bu pakette, veri tabanı tablolarını temsil eden ve ORM araçları tarafından kullanılan sınıflar bulunur. Genellikle @Entity anotasyonu ile işaretlenirler. Bu dizinde, AssignmentEntity.java ve UserEntity.java gibi dosyalar bulunmaktadır. 
 İnterceptor dizini projenin istekleri ve yanıtları önceden veya sonradan yakalar ve işlemler yapar. Bu pakette, gelen ve giden HTTP isteklerini yakalayan ve belirli işlemler gerçekleştiren sınıflar bulunur. Örneğin, oturum yönetimi, yetkilendirme veya günlük kaydı gibi işlemler için kullanılabilir. 
 Response dizini projenin API yanıtlarını özelleştirir ve standart hale getirir. Bu pakette, API'nin istemcilere döneceği standart yanıt formatlarını içeren sınıflar bulunur. Başarı ve hata durumları için özel yanıt yapılarını barındırır. Bu dizinde, AuthResponse.java ve ErrorResponse.java gibi dosyalar bulunmaktadır. 
+
 Çizelge 2.0.2. Parametre Listesi. 
+
 | İstek URI                               | İstek Metodu | Parametreler                                  | Parametre Tipleri        | Geri Dönüş Verisi |
 |-----------------------------------------|--------------|-----------------------------------------------|--------------------------|-------------------|
 | /teacherProfile/{userId}                | GET          | @PathVariable Long userId                    | Long                     | UserDTO           |
@@ -47,32 +50,47 @@ Response dizini projenin API yanıtlarını özelleştirir ve standart hale geti
 
  
 •	/teacherProfile/{userId}, /users/{id}, /api/v1/search/, /api/v1/homeworks/{userId}, /api/v1/assignment/{teacherId}, /api/v1/projectDetail/{assignmentId}: GET isteği. Veri almak için kullanılır. 
+
 •	/api/v1/teacher/works/{assignmentId}/submissions, @PreAuthorize: Belirli bir rol gereksinimi olan endpointler. Örneğin, kullanıcı veya öğretmen rolü. 
+
 •	api/v1/auth, @Valid @RequestBody AuthCredentialsDTO creds: İstek gövdesinde kimlik doğrulama bilgilerini alır. 
 AuthResponse: Kimlik doğrulama işleminin sonucunu döner. 
+
 •	/api/v1/projectUpload/{assignmentId}/{userId}, 	@RequestParam("file") 
 MultipartFile file: Yüklenen dosyayı alır. 
 ResponseEntity<String>: Dosya yükleme işleminin sonucunu döner. 
+
 •	/api/v1/teacher/works/{userId}, @RequestBody AssignmentDTO assignmentDTO: İstek gövdesinde ödev bilgilerini alır. 
+
 •	@AuthenticationPrincipal CurrentUser currentUser: Kimliği doğrulanmış mevcut kullanıcıyı alır. 
+
 •	/api/v1/admin/signup, @Valid @RequestBody UserCreateDTO userCreateDto: İstek gövdesinde yeni kullanıcı oluşturma bilgilerini alır. 
-2.1.	ANA ÖZELLİKLER 
+
+### 2.1.	ANA ÖZELLİKLER 
 Bu bölümde kullanıcıların giriş yapmadan yapabildikleri işlemler anlatılmaktadır. 
 Kullanıcıyı karşılayan ekran Şekil 2.1.1. de gösterildiği gibi öğretmen aramasını isteyen bir formdur. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_1.png)
 Şekil 2.2.1. Ana Sayfanın Arama Formu. 
+
 Kullanıcının aradığı bilgiler veri tabanında varsa Şekil 2.1.2. de gösterilen arama sonucuna benzer bir çıktı alınmaktadır. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_2.png)
+   
 Şekil 2.1.3. Arama Sonucu Örneği. 
+
 Kullanıcı arama sonucunda Şekil 2.1.2. ye benzer bir sonuç aldıysa, “Detaylar” butonuna tıklayıp Şekil 2.1.3. de gösterilen detaylara ulaşabilir. Bu sayfada, sayfasına gidilen kişinin eklediği ödevleri görülebilir. Ayrıca, oturum açtıysak kendi yüklediğimiz ödev dosyalarını da görüntüleyebilir ve istersek indirebiliriz. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_3.png)
 Şekil 2.1.4. Detaylar Sayfası Örneği. 
 Kullanıcı Şekil 2.1.3. de sağ üstten 2. sırada görünen “Ödevleri Listele” butonuna tıklayıp sayfasında olduğu kişinin daha önceden eklemiş olduğu ödevleri görebilir. Şekil 2.1.4. de gösterildiği gibi her ödevin adı, açıklaması, oluşturulma ve bitiş tarihi görüntülenebilir. 
 Aynı zamanda ödevin aktiflik durumunu da görebiliriz. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_4.png)
 Şekil 2.1.4. Ödevleri Listele Sayfası Örneği. 
 Kullanıcı Şekil 2.1.4. de altı çizili olarak görünen ödevlere tıkladığında, Şekil 2.1.5. de gösterilen ödev yükleme sayfasına yönlendirilir. Ama kullanıcı giriş yapmadıysa seçtiği PDF dosyasının yüklenmesine izin verilmez. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_5.png)
 Şekil 2.1.5. Ödev Yükleme Sayfası Örneği. 
 Kullanıcıların yetkileri Çizelge 2.1.6. da gösterilen “roles” tablosuna göre yapılandırıldığı için kullanıcıların gerekli rollere sahip olmadan belirli işlemleri yapamazlar. 
 Çizelge 2.1.6. Kullanıcı Yetki Gruplarının Tutulduğu Veri Tabanı Tablosu. 
@@ -89,7 +107,8 @@ Kullanıcıların yetkileri Çizelge 2.1.6. da gösterilen “roles” tablosuna
 Kullanıcı ROLE_USER yetkisine sahipse ödev yükleyebilir ve kendi yüklediği ödevleri görüntüleyebilir. ROLE_TEACHER yetkisine sahipse ödev oluşturabilir ve teslim edilen ödevleri görüntüleyebilir. ROLE_ADMIN yetkisine sahipse yeni kullanıcılar kayıt edebilir. 
 2.2.	ÖĞRENCİ ÖZELLİKLERİ 
 Bu bölümde kullanıcının “ROLE_USER” yetkisine sahip giriş yapması durumunda yapabileceklere anlatılmaktadır. Şekil 2.2.1. de gösterildiği gibi kullanıcı yüklediği ödevleri görüntüleyebilir ve indirebilir. 
-   
+
+    ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_6.png)
 Şekil 2.2.1. Ödevlerim Sayfası Örneği. 
 Ayrıca kullanıcı Şekil 2.1.5. de gösterilen ödev yükleme sayfasından öğrenci olarak giriş yaptığı için artık ödev yükleyebilecektir. Yüklenen ödevler bayt dizisi olarak detayları Çizelge 2.2.2. de verilen “files” tablosunda saklanır. 
 Çizelge 2.2.2. Dosyaların Tutulduğu Veri Tabanı Tablosu. 
@@ -108,14 +127,17 @@ Ayrıca kullanıcı Şekil 2.1.5. de gösterilen ödev yükleme sayfasından ö�
  
 2.3.	ÖĞRETMEN ÖZELLİKLERİ 
 Bu bölümde kullanıcının “ROLE_TEACHER” yetkisine sahip giriş yapması durumunda yapabileceklere anlatılmaktadır. Şekil 2.3.1. de gösterildiği gibi kullanıcı teslim edilen ödevlerin “Gönderimleri Görüntüle” butonuna basarak ilgili ödev için yükleme yapmış öğrencilerin ödevlerini ve bilgilerini görüntüleyebilir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_7.png)
 Şekil 2.5.1. Ödevler Sayfası Örneği. 
 Şekil 2.3.1. deki “Gönderimleri Görüntüle” butonuna tıklandığında Şekil 2.3.2. de gösterildiği gibi yüklenen ödevler öğrencinin adı ve numarasıyla birlikte gösterilir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_8.png)
 Şekil 2.6.2. Yüklenen Ödevler Sayfası Örneği. 
  
 Ayrıca Şekil 2.3.3. de gösterildiği gibi yeni ödev ekleyebilir. Burada ödev başlığını, açıklamasını, başlangıç ve bitiş tarihini girerek ödev yükleyebilir. Eklenecek ödevin başlık, açıklama, başlangıç ve bitiş tarihlerinin olması zorunludur. Bitiş tarihi başlangıç tarihinden önce seçilir ise ödev eklenemez. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_9.png)
 Şekil 2.7.3. Ödev Ekle Sayfası Örneği. 
 Kullanıcı tarafından oluşturulan ödevler Çizelge 2.3.4. de detayları verilmiş olan “assigments” tablosunda saklanır. 
 Çizelge 2.3.4. Ödev Tanımlamalarının Tutulduğu Veri Tabanı Tablosu. 
@@ -146,7 +168,8 @@ Kullanıcı tarafından oluşturulan ödevler Çizelge 2.3.4. de detayları veri
 2.4.	YÖNETİCİ ÖZELLİKLERİ 
 Bu bölümde kullanıcının “ROLE_ADMIN” yetkisine sahip giriş yapması durumunda 
 yapabileceklere anlatılmaktadır. Şekil 2.4.1. de gösterildiği gibi kullanıcı yeni kullanıcılar kayıt edebilmektedir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_10.png)
 Şekil 2.4.1. Kayıt Sayfası Örneği. 
 Şekil 2.4.1. de gösterilen kayıt sayfasında eklenecek olan kullanıcının numara dışındaki tüm değerlerinin girilmesi zorunludur. Ayrıca şifre en az bir küçük harf, bir büyük harf, bir rakam içerirken altı karakter ya da daha uzun olmalıdır. E-posta ise “???@???.??” formatında olmalıdır ve “Şifre” ile “Tekrar Şifre” aynı olmalıdır. Kullanıcı tarafından oluşturulan kullanıcılar detayları Çizelge 2.4.2. de verilmiş olan “users” tablosunda saklanır. 
 Çizelge 2.4.2. Kullanıcı Bilgilerinin Tutulduğu Veri Tabanı Tablosu. 
@@ -190,29 +213,36 @@ Sonuç olarak, Spring tabanlı ödev takip sistemi projemiz, eğitim süreçleri
 ## 5.	EKLER 
 ### 5.1.	EK 1: LOG ÖRNEKLERİ 
 Bu bölümde uygulamadan alınan örnek loğlar gösterilmiştir. Şekil 5.1.1 de log dosyalarının sistemde nasıl tutulduğu, Şekil 5.1.2. ve Şekil 5.1.3 de örnek log dosyasının içeriği örnek gösterilmiştir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_11.png)
 Şekil 5.1.1. Dosya Sistemine Kayıt Edilmiş Log Örneği. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_12.png)
 Şekil 5.1.2. Log Örneği 1. 
  
-  
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_13.png)
 Şekil 5.1.3. Log Örneği 2. 
  
 ### 5.2.	EK 2: VERİ TABANI 
 Şekil 5.2.1. de veri tabanın varlık ilişkileri gösterilirken Şekil 5.2.2. Şekil 5.2.3. Şekil 5.2.4. ve Şekil 5.2.5. de ise veri tabanı verilerinden örnek veriler gösterilmiştir. 
 xx
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_14.png)
 Şekil 5.2.1. Veri Tabanı Tasarımı. 
 Kullanıcı yetki gruplarının tutulduğu tablo Şekil 5.2.2. de gösterilmiştir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_15.png)
 Şekil 5.2.2. Roles Tablosu. 
 Öğrencilerin yüklediği dosyaların tutulduğu tablo Şekil 5.2.3. de gösterilmiştir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_16.png)
 Şekil 5.2.3. Files Tablosu. 
 Öğretmenlerin ödevlerinin tutulduğu tablo Şekil 5.2.4. de gösterilmiştir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_17.png)
 Şekil 5.2.4. Assignment Tablosu. 
 Kullanıcı bilgilerinin tutulduğu tablo Şekil 5.2.5. de gösterilmiştir. 
-  
+
+   ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_18.png)
 Şekil 5.2.5. Users Tablosu. 
  
