@@ -148,22 +148,27 @@ yapabileceklere anlatılmaktadır. Şekil 2.4.1. de gösterildiği gibi kullanı
 Şekil 2.4.1. Kayıt Sayfası Örneği. 
 Şekil 2.4.1. de gösterilen kayıt sayfasında eklenecek olan kullanıcının numara dışındaki tüm değerlerinin girilmesi zorunludur. Ayrıca şifre en az bir küçük harf, bir büyük harf, bir rakam içerirken altı karakter ya da daha uzun olmalıdır. E-posta ise “???@???.??” formatında olmalıdır ve “Şifre” ile “Tekrar Şifre” aynı olmalıdır. Kullanıcı tarafından oluşturulan kullanıcılar detayları Çizelge 2.4.2. de verilmiş olan “users” tablosunda saklanır. 
 Çizelge 2.4.2. Kullanıcı Bilgilerinin Tutulduğu Veri Tabanı Tablosu. 
-Sütun Adı 	Sütun Tipi 	Açıklama 
-user_id 	int 	Açıklama: Bu alan, kullanıcıya özgü benzersiz bir kimlik numarasını saklar. 
-Özellik: Birincil anahtar (PK) olarak kullanılır. 
-user_firstname	 varchar(45) 	Açıklama: Kullanıcının adını saklar. 
-Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
-user_lastname 	varchar(45) 	Açıklama: Kullanıcının soyadını saklar. 
-Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
-user_email 	varchar(45) 	Açıklama: Kullanıcının e-posta adresini saklar. 
-Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
-user_password	 varchar(255)	 	Açıklama: Kullanıcının şifresini saklar. 
-Özellik: Şifre verisini güvenli bir şekilde saklamak için maksimum 255 karakter uzunluğunda metin verisi kabul eder. 
-user_faculty 	varchar(45) 	Açıklama: Kullanıcının bağlı olduğu fakülteyi saklar. Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
-user_number 	varchar(9) 	Açıklama: Kullanıcının öğrenci veya personel numarasını saklar. 
-Özellik: Maksimum 9 karakter uzunluğunda metin verisi kabul eder. 
-role_id 	int 	Açıklama: Kullanıcının rolünü belirleyen rol kimlik numarasını saklar. 
-Özellik: Dış anahtar (FK) olarak kullanılır, role tablosundaki role_id alanına referans verir. 
+| Sütun Adı       | Sütun Tipi   | Açıklama                                                             |
+|-----------------|--------------|----------------------------------------------------------------------|
+| user_id         | int          | Bu alan, kullanıcıya özgü benzersiz bir kimlik numarasını saklar.  |
+|                 |              | Özellik: Birincil anahtar (PK) olarak kullanılır.                   |
+| user_firstname  | varchar(45)  | Kullanıcının adını saklar.                                          |
+|                 |              | Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder.  |
+| user_lastname   | varchar(45)  | Kullanıcının soyadını saklar.                                       |
+|                 |              | Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder.  |
+| user_email      | varchar(45)  | Kullanıcının e-posta adresini saklar.                               |
+|                 |              | Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder.  |
+| user_password   | varchar(255) | Kullanıcının şifresini saklar.                                      |
+|                 |              | Özellik: Şifre verisini güvenli bir şekilde saklamak için maksimum  |
+|                 |              | 255 karakter uzunluğunda metin verisi kabul eder.                   |
+| user_faculty    | varchar(45)  | Kullanıcının bağlı olduğu fakülteyi saklar.                         |
+|                 |              | Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder.  |
+| user_number     | varchar(9)   | Kullanıcının öğrenci veya personel numarasını saklar.               |
+|                 |              | Özellik: Maksimum 9 karakter uzunluğunda metin verisi kabul eder.   |
+| role_id         | int          | Kullanıcının rolünü belirleyen rol kimlik numarasını saklar.        |
+|                 |              | Özellik: Dış anahtar (FK) olarak kullanılır, role tablosundaki      |
+|                 |              | role_id alanına referans verir.                                     |
+
  
 ## 3.	SONUÇLAR VE ÖNERİLER 
 Spring kullanarak geliştirdiğimiz ödev takip sistemi, modern eğitim ihtiyaçlarına yönelik kapsamlı ve etkili bir çözüm sunmaktadır. Bu proje sayesinde, öğrenciler ve öğretmenler arasındaki iletişim ve iş birliği güçlenmiş, eğitim süreçleri daha düzenli ve verimli hale gelmiştir. Öğrenciler, ödevlerini daha sistematik bir şekilde takip edebilir, teslim tarihlerini kaçırmadan zamanında tamamlayabilirler. Bu da onların akademik başarılarını artırırken, stres düzeylerini azaltır ve zaman yönetimi becerilerini geliştirir. 
