@@ -91,15 +91,19 @@ Bu bölümde kullanıcının “ROLE_USER” yetkisine sahip giriş yapması dur
 Şekil 2.2.1. Ödevlerim Sayfası Örneği. 
 Ayrıca kullanıcı Şekil 2.1.5. de gösterilen ödev yükleme sayfasından öğrenci olarak giriş yaptığı için artık ödev yükleyebilecektir. Yüklenen ödevler bayt dizisi olarak detayları Çizelge 2.2.2. de verilen “files” tablosunda saklanır. 
 Çizelge 2.2.2. Dosyaların Tutulduğu Veri Tabanı Tablosu. 
-Sütun Adı 	Sütun Tipi 	Açıklama 
-file_id 	int 	Açıklama: Dosyayı benzersiz olarak tanımlayan kimlik numarasını saklar. 
-Özellik: Birincil anahtar (PK) olarak kullanılır. 
+| Sütun Adı   | Sütun Tipi | Açıklama                                                 |
+|-------------|------------|----------------------------------------------------------|
+| file_id     | int        | Dosyayı benzersiz olarak tanımlayan kimlik numarası.    |
+|             |            | Özellik: Birincil anahtar (PK) olarak kullanılır.       |
+| file_data   | longblob   | Dosyanın içeriğini (verisini) saklar.                    |
+|             |            | Özellik: Büyük boyutlu ikili veriyi (BLOB) kabul eder.  |
+| assignment_id | int      | Dosyanın bağlı olduğu ödevin kimlik numarasını saklar. |
+|             |            | Özellik: Assignments tablosundaki assignment_id alanına  |
+|             |            | referans veren dış anahtar (FK) olarak kullanılır.      |
+| user_id     | int        | Dosyayı yükleyen kullanıcının kimlik numarasını saklar. |
+|             |            | Özellik: Users tablosundaki user_id alanına referans    |
+|             |            | veren dış anahtar (FK) olarak kullanılır.              |
  
-file_data 	longblob 	Açıklama: Dosyanın içeriğini (verisini) saklar. Özellik: Büyük boyutlu ikili veriyi (BLOB) kabul eder. 
-assignment_id	 	int 	Açıklama: Dosyanın bağlı olduğu ödevin kimlik numarasını saklar. 
-Özellik: Assignments tablosundaki assignment_id alanına referans veren dış anahtar (FK) olarak kullanılır. 
-user_id 	int 	Açıklama: Dosyayı yükleyen kullanıcının kimlik numarasını saklar. 
-Özellik: Users tablosundaki user_id alanına referans veren dış anahtar (FK) olarak kullanılır. 
 2.3.	ÖĞRETMEN ÖZELLİKLERİ 
 Bu bölümde kullanıcının “ROLE_TEACHER” yetkisine sahip giriş yapması durumunda yapabileceklere anlatılmaktadır. Şekil 2.3.1. de gösterildiği gibi kullanıcı teslim edilen ödevlerin “Gönderimleri Görüntüle” butonuna basarak ilgili ödev için yükleme yapmış öğrencilerin ödevlerini ve bilgilerini görüntüleyebilir. 
   
@@ -113,20 +117,28 @@ Ayrıca Şekil 2.3.3. de gösterildiği gibi yeni ödev ekleyebilir. Burada öde
 Şekil 2.7.3. Ödev Ekle Sayfası Örneği. 
 Kullanıcı tarafından oluşturulan ödevler Çizelge 2.3.4. de detayları verilmiş olan “assigments” tablosunda saklanır. 
 Çizelge 2.3.4. Ödev Tanımlamalarının Tutulduğu Veri Tabanı Tablosu. 
-Sütun Adı 	Sütun Tipi 	Açıklama 
-assignment_id	 	int 	Açıklama: Ödevi benzersiz olarak tanımlayan kimlik numarasını saklar. 
-Özellik: Birincil anahtar (PK) olarak kullanılır. 
-user _id 	int 	Açıklama: Ödevi oluşturan kullanıcıyı belirten kimlik numarasını saklar. 
-Özellik: Dış anahtar (FK) olarak kullanılır, users tablosundaki user_id alanına referans verir. 
-name 	varchar(45) 	Açıklama: Ödevin adını saklar. 
-Özellik: Maksimum 45 karakter uzunluğunda metin verisi kabul eder. 
-description 	varchar(255)	 	Açıklama: Ödevin açıklamasını saklar. Özellik: Maksimum 255 karakter uzunluğunda metin verisi kabul eder. 
-deadline 	date 	Açıklama: Ödevin teslim tarihi ve saatini saklar. 
-Özellik: Tarih verisi kabul eder. 
-created_at 	date 	Açıklama: Ödevin oluşturulma tarihini saklar. 
-Özellik: Tarih verisi kabul eder. 
-active 	Boolean 	Açıklama: Ödevin aktif olup olmadığını belirten durumu saklar. 
-Özellik: Boolean (True/False) verisi kabul eder. 
+| Sütun Adı     | Sütun Tipi   | Açıklama                                                 |
+|---------------|--------------|----------------------------------------------------------|
+| assignment_id | int          | Ödevi benzersiz olarak tanımlayan kimlik numarasını     |
+|               |              | saklar.                                                  |
+|               |              | Özellik: Birincil anahtar (PK) olarak kullanılır.       |
+| user_id       | int          | Ödevi oluşturan kullanıcıyı belirten kimlik numarasını  |
+|               |              | saklar.                                                  |
+|               |              | Özellik: Dış anahtar (FK) olarak kullanılır, Users     |
+|               |              | tablosundaki user_id alanına referans verir.            |
+| name          | varchar(45)  | Ödevin adını saklar.                                    |
+|               |              | Özellik: Maksimum 45 karakter uzunluğunda metin verisi |
+|               |              | kabul eder.                                              |
+| description   | varchar(255) | Ödevin açıklamasını saklar.                             |
+|               |              | Özellik: Maksimum 255 karakter uzunluğunda metin verisi |
+|               |              | kabul eder.                                              |
+| deadline      | date         | Ödevin teslim tarihi ve saatini saklar.                 |
+|               |              | Özellik: Tarih verisi kabul eder.                       |
+| created_at    | date         | Ödevin oluşturulma tarihini saklar.                     |
+|               |              | Özellik: Tarih verisi kabul eder.                       |
+| active        | Boolean      | Ödevin aktif olup olmadığını belirten durumu saklar.   |
+|               |              | Özellik: Boolean (True/False) verisi kabul eder.        |
+
  
 Şekilden önceki metin ile şekil arasında 1,5 satır aralık bırakılmalıdır.  
 2.4.	YÖNETİCİ ÖZELLİKLERİ 
