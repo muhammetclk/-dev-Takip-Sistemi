@@ -27,27 +27,22 @@ Entity dizini projenin veri tabanı varlıklarını temsil eder. Bu pakette, ver
 İnterceptor dizini projenin istekleri ve yanıtları önceden veya sonradan yakalar ve işlemler yapar. Bu pakette, gelen ve giden HTTP isteklerini yakalayan ve belirli işlemler gerçekleştiren sınıflar bulunur. Örneğin, oturum yönetimi, yetkilendirme veya günlük kaydı gibi işlemler için kullanılabilir. 
 Response dizini projenin API yanıtlarını özelleştirir ve standart hale getirir. Bu pakette, API'nin istemcilere döneceği standart yanıt formatlarını içeren sınıflar bulunur. Başarı ve hata durumları için özel yanıt yapılarını barındırır. Bu dizinde, AuthResponse.java ve ErrorResponse.java gibi dosyalar bulunmaktadır. 
 Çizelge 2.0.2. Parametre Listesi. 
-İstek URI 	İstek Metot 	Parametreler 	Parametre Tipleri	 Geri Dönüş Verisi 
-/teacherProfil e/{userId} 	GET 	@PathVariable Long userId 	Long 	UserDTO 
-/users/{id} 	GET 	@PathVariable long id 	long 	UserDTO 
-/api/v1/search
-/ 	GET 	@RequestParam(name = "search") String search 	String 	List<UserDTO> 
-/api/v1/home works/{userId } 	GET 	@PathVariable Long userId 	Long 	List<FileDTO> 
-/api/v1/teache r/works/{assig
-nmentId}/sub missions 	GET 	@PathVariable Long assignmentId 	Long 	List<FileDTO> 
-api/v1/auth 	POST 	@Valid @RequestBody AuthCredentialsDTO creds 	AuthCredentials
-DTO 	AuthResponse 
-/api/v1/assign ment/{teacher Id} 	GET 	@PathVariable Long teacherId 	Long 	List<AssignmentDT O> 
-/api/v1/project Detail 	GET 	@PathVariable Long 	Long 	AssignmentDTO 
-/{assignmentI d} 		assignmentId 		
-/api/v1/project
-Upload/{assig nmentId}/{us erId} 	POST 	@RequestParam("file") MultipartFile file 	MultipartFile 	ResponseEntity<Strin g> 
- 	 	@PathVariable("assignmen tId") long assignmentId 	long 	 
- 	 	@PathVariable("userId") long userId 	long 	 
-/api/v1/teache r/works/{userI d} 	POST 	@RequestBody 
-AssignmentDTO assignmentDTO 	AssignmentDTO 	String 
-/api/v1/admin/ signup 	POST 	@Valid @RequestBody 
-UserCreateDTO userCreateDto 	UserCreateDTO 	String 
+| İstek URI                               | İstek Metodu | Parametreler                                  | Parametre Tipleri        | Geri Dönüş Verisi |
+|-----------------------------------------|--------------|-----------------------------------------------|--------------------------|-------------------|
+| /teacherProfile/{userId}                | GET          | @PathVariable Long userId                    | Long                     | UserDTO           |
+| /users/{id}                             | GET          | @PathVariable long id                        | long                     | UserDTO           |
+| /api/v1/search                          | GET          | @RequestParam(name = "search") String search | String                   | List<UserDTO>     |
+| /api/v1/home works/{userId}             | GET          | @PathVariable Long userId                    | Long                     | List<FileDTO>     |
+| /api/v1/teacher/works/{assignmentId}/submissions | GET  | @PathVariable Long assignmentId              | Long                     | List<FileDTO>     |
+| /api/v1/auth                            | POST         | @Valid @RequestBody AuthCredentialsDTO creds | AuthCredentialsDTO       | AuthResponse      |
+| /api/v1/assignment/{teacherId}          | GET          | @PathVariable Long teacherId                 | Long                     | List<AssignmentDTO> |
+| /api/v1/projectDetail/{assignmentId}    | GET          | @PathVariable Long assignmentId              | Long                     | AssignmentDTO     |
+| /api/v1/projectUpload/{assignmentId}/{userId} | POST | @RequestParam("file") MultipartFile file | MultipartFile             | ResponseEntity<String> |
+|                                         |              | @PathVariable("assignmentId") long assignmentId | long                  |                   |
+|                                         |              | @PathVariable("userId") long userId         | long                     |                   |
+| /api/v1/teacher/works/{userId}         | POST         | @RequestBody AssignmentDTO assignmentDTO    | AssignmentDTO            | String            |
+| /api/v1/admin/signup                    | POST         | @Valid @RequestBody UserCreateDTO userCreateDto | UserCreateDTO          | String            |
+
  
 •	/teacherProfile/{userId}, /users/{id}, /api/v1/search/, /api/v1/homeworks/{userId}, /api/v1/assignment/{teacherId}, /api/v1/projectDetail/{assignmentId}: GET isteği. Veri almak için kullanılır. 
 •	/api/v1/teacher/works/{assignmentId}/submissions, @PreAuthorize: Belirli bir rol gereksinimi olan endpointler. Örneğin, kullanıcı veya öğretmen rolü. 
