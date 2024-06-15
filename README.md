@@ -109,6 +109,7 @@ Kullanıcı ROLE_USER yetkisine sahipse ödev yükleyebilir ve kendi yüklediği
 Bu bölümde kullanıcının “ROLE_USER” yetkisine sahip giriş yapması durumunda yapabileceklere anlatılmaktadır. Şekil 2.2.1. de gösterildiği gibi kullanıcı yüklediği ödevleri görüntüleyebilir ve indirebilir. 
 
     ![image](https://github.com/muhammetclk/Odev-Takip-Sistemi/blob/main/projectweb/src/main/resources/static/img_6.png)
+    
 Şekil 2.2.1. Ödevlerim Sayfası Örneği. 
 Ayrıca kullanıcı Şekil 2.1.5. de gösterilen ödev yükleme sayfasından öğrenci olarak giriş yaptığı için artık ödev yükleyebilecektir. Yüklenen ödevler bayt dizisi olarak detayları Çizelge 2.2.2. de verilen “files” tablosunda saklanır. 
 Çizelge 2.2.2. Dosyaların Tutulduğu Veri Tabanı Tablosu. 
